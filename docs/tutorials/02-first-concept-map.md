@@ -47,7 +47,7 @@ needs more room.
 
 Links attach to the outline of each concept and follow when you move it.
 
-<!-- screenshot-todo: dragging a new link from a dot on the question concept toward Method, with the dots visible on both concepts -->
+![Dragging a new link from the bottom dot of the Does sleep affect exam performance? concept toward Method: a thin line runs from the dot toward Method's top dot. Both concepts are selected, so the dots show on all four edges of each, and Evidence and Conclusion are not connected yet](../assets/screenshots/tutorial-drag-new-link.png)
 
 ## 3. Label links
 
@@ -150,7 +150,7 @@ A selected group shows **Fill** and **Border** under the GROUP heading in
 the **Inspect** tab. To ungroup, select the group or a concept inside it and
 click **Ungroup** (`Ctrl+Shift+G`). Deleting a group keeps its concepts.
 
-<!-- screenshot-todo: the Measures group selected with its two concepts inside, and the Inspect tab showing the GROUP heading with Fill and Border -->
+![The Measures group selected, holding Hours of sleep and Exam scores, and the Inspect tab showing the GROUP heading with Fill and Border swatches. The question is a yellow ellipse, Evidence is bold, the link from Evidence to Conclusion is curved, and a concept lists Small sample and Self-reported sleep as bullets](../assets/screenshots/tutorial-group-selected.png)
 
 ## 8. Use layers
 
@@ -185,7 +185,7 @@ If the active layer is hidden or locked, VUECraft won't add new content to it
 and explains why in a red banner. Click the name of a visible, unlocked layer
 and try again.
 
-<!-- screenshot-todo: Layers tab with Sources above Layer 1, Sources highlighted as the active layer, showing the Hide, Lock, arrow, Move Here and Delete buttons -->
+![The Layers tab with Sources above Layer 1. Sources is highlighted as the active layer, and each layer shows Hide, Lock, the ↑ and ↓ arrows, Move Here and Delete. On the canvas, Literature review links to Evidence with the label informs, and Survey data sits below it](../assets/screenshots/tutorial-layers-panel.png)
 
 ## 9. Attach sources
 
@@ -219,7 +219,7 @@ Use the buttons next to each attachment:
   itself.
 - **×** removes the attachment.
 
-<!-- screenshot-todo: the "Open link?" confirmation dialog with its Cancel and Open Link buttons -->
+![The Open link? dialog over the map, asking whether to open https://example.org/sleep-review in your web browser, with Cancel and Open Link buttons. Behind it, Literature review is selected and the Inspect tab lists the link under Attachments](../assets/screenshots/tutorial-open-link-dialog.png)
 
 ## 10. Add an image
 

@@ -56,7 +56,7 @@ version, visit the [releases page](https://github.com/johnwallx/vuecraft/release
 VUECraft starts with a blank map. The window title reads
 `Untitled — VUECraft` and the canvas is empty.
 
-<!-- screenshot-todo: VUECraft on first launch in the light theme: blank Untitled map, title "Untitled — VUECraft", Inspect tab showing the GETTING STARTED hints -->
+![VUECraft on first launch in the light theme: the title bar reads Untitled — VUECraft, the canvas is empty, the toolbar shows Untitled and Theme: System, and the Inspect tab lists the Getting started hints](../assets/screenshots/tutorial-first-launch.png)
 
 The screenshot below shows the same window with the sample map open (see
 [Explore the sample map](#explore-the-sample-map)).

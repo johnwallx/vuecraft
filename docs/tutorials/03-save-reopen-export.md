@@ -61,7 +61,7 @@ note "Your changes will be lost if you don’t save them."
 If you choose **Save** for an untitled map and then cancel the Save dialog,
 nothing is discarded and your map stays open.
 
-<!-- screenshot-todo: the "Save changes to …?" dialog over a modified map, with Don’t Save on the left and Cancel and Save on the right -->
+![The Save changes to “sleep-study.vuecraft”? dialog over the modified map, with the note Your changes will be lost if you don’t save them, Don’t Save on the left, and Cancel and Save on the right. The window title starts with a dot and the toolbar shows Unsaved changes](../assets/screenshots/tutorial-unsaved-changes-dialog.png)
 
 ## Reopen a map
 
@@ -94,7 +94,7 @@ The map you had open stays open, and a red banner explains the problem. Click
 VUECraft can't import maps from other concept-mapping applications in this
 beta.
 
-<!-- screenshot-todo: the red error banner with its Dismiss button, after opening a file that is not a VUECraft document -->
+![A red banner below the toolbar reads Could not open "reading-list.vuecraft": this file is not a VUECraft document, with a Dismiss button on the right. The sleep-study map stays open underneath](../assets/screenshots/tutorial-open-error-banner.png)
 
 ## What travels with the file
 
@@ -161,7 +161,7 @@ VUECraft estimates text widths for the SVG, so lines may wrap slightly
 differently than on the canvas. Check the result, and widen a concept if a
 line breaks badly.
 
-<!-- screenshot-todo: the exported sleep-study SVG opened in a web browser, showing concepts, labeled links and the Measures group on a white background -->
+![The exported sleep-study.svg rendered by Microsoft Edge: the concepts, the labeled links is tested by, produces, supports and informs, and the Measures group on a white background. Evidence's bold formatting is dropped and the list bullets are kept](../assets/screenshots/tutorial-exported-svg.png)
 
 ### Export part of a map
 
