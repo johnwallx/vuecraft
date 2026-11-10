@@ -1,0 +1,6 @@
+# Packages whose install scripts may run. Driver downloads are not needed: the WebDriver
+# server is embedded in the test build of the app (tauri-plugin-wdio-webdriver).
+allowBuilds:
+  edgedriver: false
+  geckodriver: false
+  esbuild: false

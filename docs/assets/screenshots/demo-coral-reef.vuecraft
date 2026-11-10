@@ -1,0 +1,184 @@
+{
+  "format": "vuecraft",
+  "schemaVersion": 2,
+  "title": "Coral reef recovery",
+  "nodes": [
+    {
+      "id": "question",
+      "label": "Research question: how do coral reefs recover after bleaching?",
+      "x": 420.0,
+      "y": 40.0,
+      "width": 280.0,
+      "height": 72.0,
+      "layer": "concepts",
+      "text": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              { "type": "text", "text": "Research question", "marks": [{ "type": "bold" }] },
+              { "type": "text", "text": ": how do coral reefs recover after bleaching?" }
+            ]
+          }
+        ]
+      },
+      "style": { "shape": "rounded", "fill": "#1e3a8a" }
+    },
+    {
+      "id": "bleaching",
+      "label": "Coral bleaching",
+      "x": 150.0,
+      "y": 210.0,
+      "width": 180.0,
+      "height": 64.0,
+      "layer": "concepts",
+      "style": { "shape": "ellipse", "fill": "#fbcfe8" }
+    },
+    {
+      "id": "recovery",
+      "label": "Reef recovery",
+      "x": 790.0,
+      "y": 210.0,
+      "width": 180.0,
+      "height": 64.0,
+      "layer": "concepts",
+      "style": { "shape": "ellipse", "fill": "#bbf7d0" }
+    },
+    {
+      "id": "heatwaves",
+      "label": "Marine heatwaves",
+      "x": 0.0,
+      "y": 380.0,
+      "width": 180.0,
+      "height": 56.0,
+      "layer": "concepts",
+      "style": { "shape": "rectangle", "fill": "#fed7aa" }
+    },
+    {
+      "id": "algae",
+      "label": "Coral expels its symbiotic algae",
+      "x": 250.0,
+      "y": 380.0,
+      "width": 200.0,
+      "height": 64.0,
+      "layer": "concepts",
+      "style": { "shape": "rounded", "fill": "#fde68a" }
+    },
+    {
+      "id": "fish",
+      "label": "Herbivorous fish",
+      "x": 640.0,
+      "y": 400.0,
+      "width": 170.0,
+      "height": 56.0,
+      "parent": "drivers",
+      "layer": "concepts",
+      "style": { "shape": "rounded", "fill": "#bfdbfe" }
+    },
+    {
+      "id": "water",
+      "label": "Water quality",
+      "x": 850.0,
+      "y": 400.0,
+      "width": 170.0,
+      "height": 56.0,
+      "parent": "drivers",
+      "layer": "concepts",
+      "style": { "shape": "rounded", "fill": "#bfdbfe" }
+    },
+    {
+      "id": "drivers",
+      "label": "Drivers of recovery",
+      "x": 620.0,
+      "y": 364.0,
+      "width": 420.0,
+      "height": 112.0,
+      "kind": "group",
+      "layer": "concepts",
+      "style": { "shape": "rounded" }
+    },
+    {
+      "id": "notes",
+      "label": "Field notes",
+      "x": 330.0,
+      "y": 560.0,
+      "width": 280.0,
+      "height": 104.0,
+      "layer": "concepts",
+      "text": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [{ "type": "text", "text": "Field notes", "marks": [{ "type": "bold" }] }]
+          },
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Repeat transects after each event" }] }]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      { "type": "text", "text": "Compare with " },
+                      { "type": "text", "text": "baseline", "marks": [{ "type": "italic" }] },
+                      { "type": "text", "text": " photos" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "resources": [{ "kind": "url", "target": "https://example.org/transect-protocol" }],
+      "style": { "shape": "rectangle", "fill": "#ffffff" }
+    },
+    {
+      "id": "survey",
+      "label": "Reef survey data",
+      "x": 30.0,
+      "y": 580.0,
+      "width": 190.0,
+      "height": 56.0,
+      "layer": "sources",
+      "resources": [
+        { "kind": "url", "target": "https://example.org/reef-survey" },
+        { "kind": "url", "target": "https://example.org/survey-methods" }
+      ],
+      "style": { "shape": "rectangle", "fill": "#e5e7eb" }
+    },
+    {
+      "id": "literature",
+      "label": "Literature review",
+      "x": 690.0,
+      "y": 580.0,
+      "width": 190.0,
+      "height": 56.0,
+      "layer": "sources",
+      "resources": [{ "kind": "url", "target": "https://example.org/literature" }],
+      "style": { "shape": "rectangle", "fill": "#e5e7eb" }
+    }
+  ],
+  "edges": [
+    { "id": "q-bleaching", "source": "question", "target": "bleaching", "label": "starts from", "layer": "concepts", "style": { "arrow": "end", "curve": "straight" } },
+    { "id": "q-recovery", "source": "question", "target": "recovery", "label": "asks about", "layer": "concepts", "style": { "arrow": "end", "curve": "straight" } },
+    { "id": "heat-bleaching", "source": "heatwaves", "target": "bleaching", "label": "trigger", "layer": "concepts", "style": { "color": "#7f1d1d", "arrow": "end", "curve": "straight" } },
+    { "id": "bleaching-algae", "source": "bleaching", "target": "algae", "label": "means", "layer": "concepts", "style": { "arrow": "end", "curve": "straight" } },
+    { "id": "bleaching-recovery", "source": "bleaching", "target": "recovery", "label": "can be followed by", "layer": "concepts", "style": { "color": "#065f46", "arrow": "end", "curve": "curved" } },
+    { "id": "recovery-fish", "source": "recovery", "target": "fish", "label": "depends on", "layer": "concepts", "style": { "arrow": "end", "curve": "straight" } },
+    { "id": "recovery-water", "source": "recovery", "target": "water", "label": "depends on", "layer": "concepts", "style": { "arrow": "end", "curve": "straight" } },
+    { "id": "survey-notes", "source": "survey", "target": "notes", "label": "informs", "layer": "sources", "style": { "arrow": "end", "curve": "curved" } },
+    { "id": "literature-recovery", "source": "literature", "target": "water", "label": "supports", "layer": "sources", "style": { "arrow": "end", "curve": "straight" } }
+  ],
+  "layers": [
+    { "id": "concepts", "name": "Concepts", "visible": true, "locked": false },
+    { "id": "sources", "name": "Sources", "visible": true, "locked": false }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "VUECraft",
+  "version": "0.1.0-beta.1",
+  "identifier": "io.github.johnwallx.vuecraft",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build"
+  },
+  "app": {
+    "windows": [
+      { "label": "main", "title": "VUECraft", "width": 1280, "height": 800, "minWidth": 720, "minHeight": 480 }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "John Wall",
+    "copyright": "Copyright (c) 2026 John Wall",
+    "shortDescription": "VUECraft concept-map editor",
+    "windows": { "nsis": { "installerHooks": "./windows/hooks.nsh" } },
+    "resources": { "../LICENSE-MIT": "LICENSE-MIT", "../LICENSE-APACHE": "LICENSE-APACHE", "../THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md" },
+    "targets": ["nsis"],
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "fileAssociations": [
+      { "ext": ["vuecraft"], "name": "VUECraft Map", "description": "VUECraft concept map", "role": "Editor", "mimeType": "application/x-vuecraft+json" }
+    ]
+  }
+}

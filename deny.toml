@@ -1,0 +1,40 @@
+# cargo-deny: dependency licenses, advisories, and sources.
+[graph]
+targets = ["x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu", "aarch64-apple-darwin", "x86_64-apple-darwin"]
+
+[advisories]
+version = 2
+ignore = [
+  # proc-macro-error is unmaintained (not a vulnerability). Compile-time only, pulled in by
+  # gtk-rs 0.18 through Tauri's Linux backend; not fixable without replacing Tauri. Revisit on Tauri upgrades.
+  { id = "RUSTSEC-2024-0370", reason = "unmaintained compile-time dependency of Tauri's Linux GTK stack" },
+  # zbus helper crates are unmaintained (not vulnerabilities). Linux-only: tauri-plugin-opener
+  # uses D-Bus to show a file in its folder. No safe upgrade exists yet; revisit on plugin upgrades.
+  { id = "RUSTSEC-2026-0370", reason = "unmaintained; Linux-only D-Bus dependency of tauri-plugin-opener" },
+  { id = "RUSTSEC-2026-0371", reason = "unmaintained; Linux-only D-Bus dependency of tauri-plugin-opener" },
+  { id = "RUSTSEC-2026-0372", reason = "unmaintained; Linux-only D-Bus dependency of tauri-plugin-opener" },
+]
+
+[licenses]
+version = 2
+# Permissive licenses plus MPL-2.0 (file-level copyleft; used unmodified by Tauri's HTML tooling).
+allow = [
+  "MIT",
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-3-Clause",
+  "Zlib",
+  "Unicode-3.0",
+  "CC0-1.0",
+  "MPL-2.0",
+]
+confidence-threshold = 0.9
+
+[bans]
+multiple-versions = "allow"
+wildcards = "deny"
+allow-wildcard-paths = true
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

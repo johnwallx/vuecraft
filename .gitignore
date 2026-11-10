@@ -1,0 +1,10 @@
+node_modules/
+dist/
+target/
+src-tauri/gen/
+test-results/
+playwright-report/
+coverage/
+target/llvm-cov*/
+*.tmp
+.claude/

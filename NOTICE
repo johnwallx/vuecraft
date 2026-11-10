@@ -1,0 +1,32 @@
+VUECraft
+Copyright (c) 2026 John Wall
+
+Licensed under either of the MIT license (LICENSE-MIT) or the Apache License,
+Version 2.0 (LICENSE-APACHE), at your option.
+
+VUECraft is an independent implementation. It is not affiliated with or
+endorsed by Tufts University or the College of Charleston, and it is not derived
+from the implementation of the Visual Understanding Environment (VUE). VUE is
+named only to describe the functionality that inspired VUECraft and intended
+functional interoperability. VUECraft was developed under the working name
+Mapwright.
+
+Third-party software
+--------------------
+The desktop application bundles third-party components under their own
+licenses, including Tauri (MIT OR Apache-2.0), React and React DOM (MIT), React
+Flow / @xyflow (MIT), Tiptap and ProseMirror (MIT), d3 modules (ISC,
+BSD-3-Clause), and zustand (MIT), plus the Rust crates listed in Cargo.lock
+(audited with `cargo deny check`; allowed licenses in deny.toml). The executable
+also contains Microsoft's Edge WebView2 loader (WebView2LoaderStatic.lib from
+the Microsoft Edge WebView2 SDK, linked by the webview2-com-sys crate), under
+Microsoft's BSD-style license. The complete
+list with license texts is THIRD_PARTY_NOTICES.md, which every installer ships
+next to the program. The JavaScript audit is `pnpm run audit:licenses`.
+
+Assets
+------
+The application icon (assets/brand/ and the generated src-tauri/icons/*) is an
+original work created for this project; see docs/brand/ASSETS.md for its
+attribution and license record. No fonts are bundled; the UI uses the operating
+system's fonts.

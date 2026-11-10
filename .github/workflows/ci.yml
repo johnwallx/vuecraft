@@ -1,0 +1,134 @@
+# Continuous integration for VUECraft.
+#
+# Required check (to be made required only after it has passed on GitHub): the `windows` job.
+# It runs every automated gate that needs no desktop session: formatting, clippy, Rust and UI
+# tests, lint, typecheck, clean-room guard and hook tests, cargo deny, license audits, notices.
+#
+# Not covered by CI: the WebdriverIO desktop E2E, the installer test
+# (tests/installer/installer-test.ps1) and the manual acceptance checks. They need an
+# interactive Windows desktop and run locally before every release (docs/FEATURE_MATRIX.md).
+# `desktop-e2e-experimental` tries the desktop E2E on a hosted runner. It is informational: its
+# result is not release evidence either way.
+# `linux` and `macos` only check that the code compiles and the non-GUI tests pass there. The app
+# is not supported or verified on those platforms, and both jobs are non-blocking.
+#
+# Security:
+# - No secrets are used, and the token is read-only.
+# - Pull requests run with `pull_request`, never `pull_request_target`, so fork code gets that
+#   read-only token and no secrets.
+# - Checkout does not persist the token, and caches are written only from main.
+# - Third-party actions are pinned to the commit of the release tag named in each comment
+#   (looked up 2026-11-09). Dependabot proposes updates.
+# Experimental jobs with expensive runners run only once the repository is public, because
+# private repositories on GitHub Free pay for Actions minutes (Windows 2x, macOS 10x).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: windows (gates)
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      # pnpm version comes from package.json "packageManager".
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable branch
+        with: { components: "rustfmt, clippy" }
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with: { save-if: "${{ github.ref == 'refs/heads/main' }}" }
+      - uses: taiki-e/install-action@cfdb7ed4ccc7c7dce37759eae89dc5674b469b39 # v2.90.3
+        with: { tool: cargo-deny }
+      - run: pnpm install --frozen-lockfile
+      - name: Gates (fmt, clippy, tests, lint, types, guard + hook tests, deny, licenses, notices)
+        run: node scripts/verify.mjs full --no-e2e
+
+  desktop-e2e-experimental:
+    name: desktop E2E (experimental, not a required check)
+    needs: windows
+    if: ${{ !github.event.repository.private }}
+    runs-on: windows-latest
+    # Informational only; see the header.
+    continue-on-error: true
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable branch
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with: { save-if: "false" }
+      - run: pnpm install --frozen-lockfile
+      - name: Desktop E2E (WebdriverIO, embedded driver, test build)
+        run: node scripts/desktop-e2e.mjs --build
+      - name: Keep desktop failure evidence
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: desktop-e2e-results
+          path: test-results/
+          retention-days: 14
+
+  linux:
+    name: linux (compile + non-GUI tests; unsupported platform)
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - name: Tauri system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libsoup-3.0-dev libjavascriptcoregtk-4.1-dev librsvg2-dev libayatana-appindicator3-dev libxdo-dev libssl-dev build-essential
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable branch
+        with: { components: "rustfmt, clippy" }
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with: { save-if: "${{ github.ref == 'refs/heads/main' }}" }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - run: cargo test --workspace
+      - run: pnpm lint && pnpm typecheck && pnpm test
+      - run: pnpm test:guard && pnpm test:hooks
+      - name: App compiles (no GUI test on Linux)
+        run: pnpm tauri build --debug --no-bundle
+
+  macos:
+    name: macos (compile + non-GUI tests; unsupported platform)
+    if: ${{ !github.event.repository.private }}
+    runs-on: macos-latest
+    continue-on-error: true
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: pnpm }
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable branch
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with: { save-if: "${{ github.ref == 'refs/heads/main' }}" }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: cargo test --workspace
+      - run: pnpm test
+      - name: App compiles (no GUI test on macOS)
+        run: pnpm tauri build --debug --no-bundle

@@ -1,0 +1,48 @@
+name: Feature request
+description: Propose a new capability or a change to an existing one.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [roadmap](https://github.com/johnwallx/vuecraft/blob/main/ROADMAP.md) first. Open-ended ideas and questions fit better in [Discussions](https://github.com/johnwallx/vuecraft/discussions).
+
+        VUECraft is developed under a [clean-room process](https://github.com/johnwallx/vuecraft/blob/main/docs/CLEAN_ROOM.md). Describe behavior you can see in a running application or its user documentation. Never paste or link VUE's source code.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do, and what gets in the way?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should VUECraft do?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Workarounds or other approaches you considered.
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - R1.5 Search and organization
+        - R2 Legacy .vue import
+        - R3 Pathways and presentation
+        - R4 Map merging and metadata
+        - Editor
+        - File format
+        - Installer
+        - Documentation
+        - Other
+    validations:
+      required: true

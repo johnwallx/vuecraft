@@ -1,0 +1,126 @@
+{
+  "format": "mapwright",
+  "schemaVersion": 2,
+  "title": "",
+  "nodes": [
+    {
+      "id": "2e5df247-1f29-4fce-a880-c9ef7f69ee6c",
+      "label": "Plain strong",
+      "x": 200.0,
+      "y": 349.0,
+      "width": 160.0,
+      "height": 140.0,
+      "parent": "7a91648e-73f7-41f7-97ba-d163fec5d19d",
+      "layer": "layer-1",
+      "text": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Plain "
+              },
+              {
+                "type": "text",
+                "text": "strong",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "resources": [
+        {
+          "kind": "url",
+          "target": "https://example.org/paper"
+        },
+        {
+          "kind": "file",
+          "target": "C:\\data\\notes.txt"
+        }
+      ],
+      "image": "4ff6ab670a58c14270e034e2090d9a432caa263a14e0a25785386b0c12f880b5",
+      "style": {
+        "shape": "rounded"
+      }
+    },
+    {
+      "id": "488de72b-68cf-463f-89c0-d1b0e4b2ae9a",
+      "label": "Beta",
+      "x": 440.0,
+      "y": 361.0,
+      "width": 160.0,
+      "height": 56.0,
+      "parent": "7a91648e-73f7-41f7-97ba-d163fec5d19d",
+      "layer": "layer-1",
+      "style": {
+        "shape": "rounded"
+      }
+    },
+    {
+      "id": "7a91648e-73f7-41f7-97ba-d163fec5d19d",
+      "label": "Group",
+      "x": 180.0,
+      "y": 313.0,
+      "width": 440.0,
+      "height": 196.0,
+      "kind": "group",
+      "layer": "layer-1",
+      "style": {
+        "shape": "rounded"
+      }
+    },
+    {
+      "id": "notes",
+      "label": "Notes",
+      "x": 720.0,
+      "y": 361.0,
+      "width": 160.0,
+      "height": 56.0,
+      "layer": "layer-2",
+      "style": {
+        "shape": "ellipse",
+        "fill": "#fde68a"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "beta-notes",
+      "source": "488de72b-68cf-463f-89c0-d1b0e4b2ae9a",
+      "target": "notes",
+      "label": "explains",
+      "layer": "layer-2",
+      "style": {
+        "arrow": "end",
+        "curve": "straight"
+      }
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer-1",
+      "name": "Layer 1",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "layer-2",
+      "name": "Notes layer",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "assets": {
+    "4ff6ab670a58c14270e034e2090d9a432caa263a14e0a25785386b0c12f880b5": {
+      "mime": "image/png",
+      "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/iZk9HQAAAABJRU5ErkJggg=="
+    }
+  }
+}

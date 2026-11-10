@@ -1,0 +1,45 @@
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      cargo-minor-patch:
+        update-types: [minor, patch]
+    # The test-only WebDriver plugins are pinned to match @wdio/tauri-* exactly; update both
+    # sides together by hand and run the desktop E2E.
+    ignore:
+      - dependency-name: tauri-plugin-wdio
+      - dependency-name: tauri-plugin-wdio-webdriver
+
+  # The npm ecosystem also handles pnpm-lock.yaml.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-patch:
+        update-types: [minor, patch]
+    # Pinned together with the Rust WebDriver plugins above.
+    ignore:
+      - dependency-name: "@wdio/tauri-*"
+      # WebdriverIO stays on v9: @wdio/tauri-service 1.5.1 requires webdriverio ^9. Minor and
+      # patch releases of v9 still arrive through the group above.
+      - dependency-name: "@wdio/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: webdriverio
+        update-types: ["version-update:semver-major"]
+      - dependency-name: expect-webdriverio
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      actions-minor-patch:
+        update-types: [minor, patch]

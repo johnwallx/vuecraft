@@ -1,0 +1,72 @@
+name: Bug report
+description: Something in VUECraft doesn't work as documented.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Security problems go through private reporting instead: see the [security policy](https://github.com/johnwallx/vuecraft/security/policy). Questions belong in [Discussions](https://github.com/johnwallx/vuecraft/discussions).
+  - type: input
+    id: version
+    attributes:
+      label: VUECraft version
+      description: Shown in Settings → Apps → Installed apps, and in the installer's file name.
+      placeholder: 0.1.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      description: Run `winver` to see it.
+      placeholder: Windows 11 24H2 (OS build 26100.1234)
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start VUECraft with a new map.
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: Sample map
+      description: >-
+        Optional. A small map that shows the problem makes it much easier to fix.
+        GitHub doesn't accept `.vuecraft` files directly, so put the file in a .zip and drag it into this box.
+        **Attachments are public. Never attach a private document;** make a small copy with nothing sensitive in it.
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error messages and logs
+      description: Paste the exact text of any error message VUECraft showed. The app keeps no log file, so the message text is the most useful detail.
+      render: text
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues for this bug.
+          required: true

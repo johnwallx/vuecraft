@@ -1,0 +1,65 @@
+{
+  "format": "mapwright",
+  "schemaVersion": 1,
+  "title": "",
+  "nodes": [
+    {
+      "id": "cb036967-1d88-48e9-ba44-74bf76a4846c",
+      "label": "Research Question",
+      "x": 66.0,
+      "y": 253.0,
+      "width": 160.0,
+      "height": 56.0,
+      "style": {
+        "shape": "ellipse",
+        "fill": "#fde68a",
+        "stroke": "#7f1d1d"
+      }
+    },
+    {
+      "id": "9a886de4-34e8-4e77-843e-379db677e5d2",
+      "label": "Evidence",
+      "x": 458.0,
+      "y": 298.0,
+      "width": 160.0,
+      "height": 56.0,
+      "style": {
+        "shape": "rounded"
+      }
+    },
+    {
+      "id": "70d56f74-0699-437c-920f-624b89e94474",
+      "label": "Conclusion",
+      "x": 706.0,
+      "y": 253.0,
+      "width": 160.0,
+      "height": 56.0,
+      "style": {
+        "shape": "rounded"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "f085f0f8-6338-43dd-b013-1b6393a1270b",
+      "source": "cb036967-1d88-48e9-ba44-74bf76a4846c",
+      "target": "9a886de4-34e8-4e77-843e-379db677e5d2",
+      "label": "supports",
+      "style": {
+        "arrow": "end",
+        "curve": "straight"
+      }
+    },
+    {
+      "id": "19804b5c-003c-4217-859e-8c72f42b015a",
+      "source": "9a886de4-34e8-4e77-843e-379db677e5d2",
+      "target": "70d56f74-0699-437c-920f-624b89e94474",
+      "label": "",
+      "style": {
+        "color": "#065f46",
+        "arrow": "both",
+        "curve": "curved"
+      }
+    }
+  ]
+}
