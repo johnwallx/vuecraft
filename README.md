@@ -145,6 +145,9 @@ This is a beta. What it does not do yet:
 | Registers | The `.vuecraft` file type, so double-clicking a map opens it. |
 | Uninstall | *Settings → Apps*. This removes the program and its file association and keeps your documents. |
 
+New to VUECraft? Start with the [tutorials](docs/tutorials/01-getting-started.md):
+getting started, your first concept map, and saving and exporting maps.
+
 ## Building from source
 
 You need Node 24+ with pnpm (via Corepack), stable Rust, and the
