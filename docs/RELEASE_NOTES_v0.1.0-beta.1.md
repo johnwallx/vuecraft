@@ -26,7 +26,7 @@ family. See [docs/CLEAN_ROOM.md](CLEAN_ROOM.md).
   5 MB). Links open, and folders are shown, only after you confirm.
 - **Files:** the `.vuecraft` format (versioned JSON). Double-clicking a
   `.vuecraft` file opens it. Files from development builds (`.mapw`) open
-  through File → Open and are saved as VUECraft documents.
+  through **Open…** (`Ctrl+O`) and are saved as VUECraft documents.
 
 Per-requirement evidence is in [FEATURE_MATRIX.md](FEATURE_MATRIX.md).
 

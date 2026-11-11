@@ -111,7 +111,7 @@ export function LayersPanel({ layers, onMoveSelection }: { layers: Layer[]; onMo
           </li>
         ))}
       </ul>
-      <p className="hint">Hidden layers are skipped by selection, search, Fit and SVG export. Locked layers stay visible but cannot be edited.</p>
+      <p className="hint">Hidden layers are skipped by selection, Fit and SVG export. Locked layers stay visible but cannot be edited.</p>
     </div>
   );
 }
