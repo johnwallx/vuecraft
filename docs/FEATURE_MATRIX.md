@@ -135,8 +135,8 @@ foreground window. Evidence (screenshots and the saved maps) is in
 | Provenance independent review | Not started |
 | IP/trademark review, final product name | Name VUECraft and the interim elephant icon kept (2026-11-09). A focused name search (web, GitHub, npm, crates.io) was done; there has been no formal trademark clearance or IP review. |
 | Security review | Not started |
-| CI build matrix | Configured (`.github/workflows/ci.yml`). Not part of the local release verification; it first runs when the repository is pushed. |
-| Repository audit before a public push | Prepared. The public repository is a fresh snapshot without the development history, the clean-room audit log or the private preparation notes. It uses the GitHub no-reply identity, and the audit of its exact history is recorded with the release. The development repository stays private. |
+| CI build matrix | Runs on GitHub Actions for every pull request and every push to `main`. `windows (gates)` and `linux` passed on PR #1 (2026-11-10). Not part of the local release verification. |
+| Repository audit before a public push | Done (2026-11-10). The public repository was published as a fresh snapshot without the development history, the clean-room audit log or the private preparation notes. It uses the GitHub no-reply identity, and the audit of its exact history is recorded with the release. The repository is public; only the pre-publication development history stays private. |
 
 ## Backlog
 

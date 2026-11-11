@@ -41,7 +41,7 @@ Python or Node backend, a database, a server, or cloud services.
 | `tests/cleanroom/` | Guard tests |
 | `tests/harness/`, `.claude/hooks/harness.mjs` | Dev-harness hooks (session context, format/lint after edits, verification check, continuity) and their tests |
 | `scripts/` | `verify.mjs` (quick/full/release gates), `lsp-smoke.mjs`, `third-party-notices.mjs`, license audit |
-| `.claude/skills/` | Project skills `vuecraft-verify`, `vuecraft-desktop-debug`, `vuecraft-feature`, `vuecraft-release`; master copies `clean-room`, `config-git`, `sub-agents`, `update-skills`, `session-start`, `session-end`, `rust-env`, `rust-patterns`, `rust-testing` (keep identical to master, refresh with `/update-skills`; not linted here) |
+| `.claude/skills/` | Project skills `vuecraft-verify`, `vuecraft-desktop-debug`, `vuecraft-feature`, `vuecraft-release`, `github-read`; master copies `clean-room`, `config-git`, `sub-agents`, `update-skills`, `session-start`, `session-end`, `rust-env`, `rust-patterns`, `rust-testing` (keep identical to master, refresh with `/update-skills`; not linted here) |
 | `.claude/agents/` | `cleanroom-explorer` (read-only, Sonnet), `cleanroom-worker` (scoped edits, Opus), `cleanroom-warden` (clean-room audit, Opus) |
 
 ## Commands
@@ -79,7 +79,9 @@ pnpm tauri build                             # release exe + NSIS installer
 - Mark a requirement Verified only after its acceptance criteria were exercised.
   Report test results only from commands actually run.
 - Run `pnpm verify quick` after edits and `pnpm verify full` before a milestone
-  commit. Only one desktop E2E run at a time (it takes `target/desktop-e2e.lock`).
+  commit. Only one desktop E2E run at a time: the legacy Playwright harness takes
+  `target/desktop-e2e.lock`, but the WebdriverIO runner (`scripts/desktop-e2e.mjs`)
+  doesn't, so never start a second run.
 - A failed desktop test leaves `test-results/<test>/diagnostics.json`; diagnose
   with the `vuecraft-desktop-debug` skill before calling a failure environmental.
 
